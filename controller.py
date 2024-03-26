@@ -22,6 +22,9 @@ class SpellChecker:
                     if not parola.corretta:
                         paroleErrate = paroleErrate + str(parola) + " - "
                 t2 = time.time()
+                print(f"Frase inserita: {txtIn}")
+                print(f"Parole errate: {paroleErrate}")
+                print(f"tempo processo: {t2 - t1}")
                 return paroleErrate, t2 - t1
 
             case "Linear":
@@ -31,6 +34,9 @@ class SpellChecker:
                     if not parola.corretta:
                         paroleErrate = paroleErrate + str(parola) + " "
                 t2 = time.time()
+                print(f"Frase inserita: {txtIn}")
+                print(f"Parole errate: {paroleErrate}")
+                print(f"tempo processo: {t2 - t1}")
                 return paroleErrate, t2 - t1
 
             case "Dichotomic":
@@ -40,9 +46,23 @@ class SpellChecker:
                     if not parola.corretta:
                         paroleErrate = paroleErrate + str(parola) + " - "
                 t2 = time.time()
+                print(f"Frase inserita: {txtIn}")
+                print(f"Parole errate: {paroleErrate}")
+                print(f"tempo processo: {t2 - t1}")
                 return paroleErrate, t2 - t1
             case _:
+                print("Errore selezione modalità")
                 return None
+
+
+
+    def checkBeforeRunning(self,e):
+        if self._view._txt != "" and self._view._lingua and self._view._mode:
+            self._view.start_checking(self._view._txt.value, self._view._lingua.value, self._view._mode.value)
+        else:
+            print("Errore nella compilazione")
+
+
 
 
     def printMenu(self):
